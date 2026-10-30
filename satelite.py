@@ -33,7 +33,7 @@ class Satelite:
         
     def __str__(self):
         """Por ejemplo: 'ISS (ZARYA) | LEO | 419.7 km'"""
-        return f"{self.nombre} | {self.tipo_orbita()} | Estado de zona:{self.esta_en_zona( (-76.30, -46.13, -66.30, -36.13))} "
+        return f"{self.nombre} | {self.tipo_orbita()} | Altitud:{self.altitud_km}"
 
 def crear_satelites(registros:list, momento) -> list:
     satelites = []   # lista de objetos satélite

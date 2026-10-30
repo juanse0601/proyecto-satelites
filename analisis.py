@@ -42,7 +42,7 @@ def ordenar_por(satelites,atributo,descendente=False):
     return lista_ordenada
 
 def top_n(satelites,n,mas_altos=True):
-    if mas_altos=True:
+    if mas_altos==True:
         lista_ordenada=ordenar_por(satelites,'altitud_km',True)
     else:
         lista_ordenada=ordenar_por(satelites,'altitud_km',False)
@@ -50,4 +50,20 @@ def top_n(satelites,n,mas_altos=True):
 
 def resumen_por_grupo(satelites):
     diccionario={}
-    return diccionario
+    ##Creamos diccionario con lista de altitudes para luego trabjar con ellas.
+    for satelite in satelites:
+        nombre=catalogo.grupo(satelite.nombre)
+        altitud=satelite.altitud_km
+        if nombre not in diccionario:
+            diccionario[nombre]=[]
+        diccionario[nombre].append(altitud)
+    resumen = {}
+    ##Trabajamos con los datos guardados
+    for nombre,altitudes in diccionario.items():
+        resumen[nombre]={
+            "Cantidad":len(altitudes),
+            "Minima":min(altitudes),
+            "Maxima":max(altitudes),
+            "Media":sum(altitudes)/len(altitudes)
+        }
+    return resumen
