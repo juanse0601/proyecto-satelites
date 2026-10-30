@@ -54,7 +54,7 @@ def grupo(nombre:str):
     else:
         return "Otros"
 
-def contar_por_grupo(registros:list):
+def contar_por_grupo(registros:list) -> dict:
 	cantidad={}
 	for i in range(0,len(registros)):
 		if grupo(registros[i]["OBJECT_NAME"]) not in cantidad:
