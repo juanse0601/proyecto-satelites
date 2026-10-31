@@ -43,7 +43,7 @@ def mas_alto(satelites):
             salida=satelite
     return salida
 
-def en_zona(satelites:list, zona:tupla) ->list:
+def en_zona(satelites:list, zona:tuple) ->list:
     """
     Esta funcion busca los satelites que esten
     dentro de la zona. 

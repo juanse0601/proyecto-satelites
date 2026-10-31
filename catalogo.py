@@ -12,14 +12,14 @@ def leer_satelites(ruta:str) -> list:
     guarda en una lista los datos del satelite como
     diccionario
     """
-	try:
-		with open(ruta,'r',encoding='utf-8') as f:
-			registros=json.load(f)
+    try:
+        with open(ruta,'r',encoding='utf-8') as f:
+            registros=json.load(f)
 						
-		return registros
-	except FileNotFoundError:
-		print("No se encontro el archivo")
-		return []
+        return registros
+    except FileNotFoundError:
+        print("No se encontro el archivo")
+        return []
 
 #Lee fecha de un registro
 def anio_lanzamiento(registro:dict) -> int:
@@ -28,13 +28,12 @@ def anio_lanzamiento(registro:dict) -> int:
     de un satelite devuelve una fecha.
     La fecha debe tener 4 digitos en caso contrario
     imprime un aviso
-    
     """
-	ob_id=registro["OBJECT_ID"]
-	if len(ob_id) < 4:
-		print("Ocurrio un error al leer la fecha")
-	anio= int(ob_id[:4])
-	return anio
+    ob_id=registro["OBJECT_ID"]
+    if len(ob_id) < 4:
+        print("Ocurrio un error al leer la fecha")
+    anio= int(ob_id[:4])
+    return anio
 
 #Buscar a que grupo pertenece nombre
 def grupo(nombre:str) -> str:
@@ -83,13 +82,13 @@ def contar_por_grupo(registros:list) -> dict:
     hay por grupo.
     el grupo es la clave y la cantidad el valor.
     """
-	cantidad={}
-	for i in range(0,len(registros)):
-		if grupo(registros[i]["OBJECT_NAME"]) not in cantidad:
-			cantidad[grupo(registros[i]["OBJECT_NAME"])] = 1
-		else:
-			cantidad[grupo(registros[i]["OBJECT_NAME"])] +=1
-	return cantidad
+    cantidad={}
+    for i in range(0,len(registros)):
+        if grupo(registros[i]["OBJECT_NAME"]) not in cantidad:
+            cantidad[grupo(registros[i]["OBJECT_NAME"])] = 1
+        else:
+            cantidad[grupo(registros[i]["OBJECT_NAME"])] +=1
+    return cantidad
 	
 def lanzamiento_por_anio(registros:list) -> dict:
     """
@@ -97,12 +96,12 @@ def lanzamiento_por_anio(registros:list) -> dict:
     de satelites lanzados en cada año. Guarda la clave
     como el año y el valor como la cantidad
     """
-	anios={}
-	for i in range(0,len(registros)):
-		if anio_lanzamiento(registros[i]) not in anios:
-			anios[anio_lanzamiento(registros[i])]=1
-		else:
-			anios[anio_lanzamiento(registros[i])]+=1
-	return anios
+    anios={}
+    for i in range(0,len(registros)):
+        if anio_lanzamiento(registros[i]) not in anios:
+            anios[anio_lanzamiento(registros[i])]=1
+        else:
+            anios[anio_lanzamiento(registros[i])]+=1
+    return anios
 		
 	
