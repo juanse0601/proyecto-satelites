@@ -36,6 +36,11 @@ class Satelite:
         return f"{self.nombre} | {self.tipo_orbita()} | Altitud:{self.altitud_km}"
 
 def crear_satelites(registros:list, momento) -> list:
+    """
+    Usando la clase Satelite creamos objetos satelites y los guardamos dentro de una lista
+    Los satelites deben estar a una altura mayor o igual a 100, de esta forma no guardamos
+    satelites que hayan caido
+    """
     satelites = []   # lista de objetos satélite
     for registro in registros:
         objeto = funciones_base.crear_objeto_skyfield(registro)
