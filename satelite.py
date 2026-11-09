@@ -3,15 +3,17 @@ import skyfield
 import os
 import sys
 import json
+import catalogo
 import funciones_base
 
 class Satelite:
-    def __init__(self, nombre, latitud, longitud, altitud_km):
+    def __init__(self, nombre, latitud, longitud, altitud_km, anio):
         """Guarda los cuatro datos como atributos del objeto."""
         self.nombre=nombre
         self.latitud=latitud
         self.longitud=longitud
         self.altitud_km=altitud_km
+        self.anio=anio
 
     def tipo_orbita(self):
         """Devuelve "LEO", "MEO", "GEO" o "HEO" según la altitud (ver tabla)."""
@@ -46,6 +48,6 @@ def crear_satelites(registros:list, momento) -> list:
         objeto = funciones_base.crear_objeto_skyfield(registro)
         latitud, longitud, altitud_km = funciones_base.obtener_posicion(objeto, momento)
         if altitud_km >= 100:  # que no se haya caído!
-            satelites.append(  Satelite(registro["OBJECT_NAME"], latitud, longitud, altitud_km) )
+            satelites.append(  Satelite(registro["OBJECT_NAME"], latitud, longitud, altitud_km,catalogo.anio_lanzamiento(registro)) )
     return satelites
     
